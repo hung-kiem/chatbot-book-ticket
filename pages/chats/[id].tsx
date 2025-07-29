@@ -1,33 +1,15 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { WelcomeScreen } from "../components/chat/welcome-screen";
-import { Button } from "../components/ui/button";
-import { Plus, MessageSquare, ChevronLeft, ChevronRight } from "lucide-react";
+import { Button } from "../../components/ui/button";
+import { Plus, MessageSquare, Send, ChevronLeft, ChevronRight } from "lucide-react";
+import { Textarea } from "../../components/ui/textarea";
 
-export default function Home() {
+export default function ChatDetail() {
   const router = useRouter();
+  const { id } = router.query;
+  const [message, setMessage] = useState("");
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [hoveredButton, setHoveredButton] = useState<string | null>(null);
-  const [chatHistory] = useState([
-    {
-      id: "1",
-      title: "Đặt vé từ Hà Nội đến TP.HCM",
-      timestamp: new Date("2024-01-15"),
-      messageCount: 5
-    },
-    {
-      id: "2", 
-      title: "Hỏi về chính sách đổi vé",
-      timestamp: new Date("2024-01-14"),
-      messageCount: 3
-    },
-    {
-      id: "3",
-      title: "Tìm chuyến bay giá rẻ",
-      timestamp: new Date("2024-01-13"),
-      messageCount: 8
-    }
-  ]);
 
   const tooltips = {
     toggle: isCollapsed ? "Mở rộng sidebar" : "Thu nhỏ sidebar",
@@ -35,17 +17,26 @@ export default function Home() {
     chats: "Xem danh sách cuộc trò chuyện"
   };
 
-  const handleSendMessage = (message: string) => {
-    console.log("Message sent from welcome:", message);
-    // TODO: Navigate to chat detail page
+  const handleNewChat = () => {
+    router.push("/");
   };
 
   const handleGoToHistory = () => {
     router.push("/chats");
   };
 
-  const handleSelectChat = (chatId: string) => {
-    router.push(`/chats/${chatId}`);
+  const handleSendMessage = () => {
+    if (message.trim()) {
+      console.log("Message sent in chat", id, ":", message);
+      setMessage("");
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      handleSendMessage();
+    }
   };
 
   return (
@@ -90,6 +81,7 @@ export default function Home() {
         <div className="p-4 flex justify-center">
           <div className={`relative ${!isCollapsed ? "w-full" : ""}`}>
             <Button
+              onClick={handleNewChat}
               className={`bg-blue-600 hover:bg-blue-700 text-white ${
                 isCollapsed ? "w-10 h-10 rounded-full p-0" : "w-full justify-start gap-3"
               }`}
@@ -141,30 +133,58 @@ export default function Home() {
           <div className="flex-1 overflow-y-auto p-4">
             <div className="space-y-1">
               <h3 className="text-sm font-medium text-gray-400 mb-3">Recents</h3>
-              {chatHistory.map((chat) => (
-                <div
-                  key={chat.id}
-                  className="group flex items-center gap-2 p-2 rounded-md cursor-pointer transition-colors hover:bg-gray-800 text-gray-300"
-                  onClick={() => handleSelectChat(chat.id)}
-                >
-                  <MessageSquare className="h-4 w-4 flex-shrink-0" />
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm truncate">{chat.title}</p>
-                    <p className="text-xs text-gray-500">
-                      {chat.timestamp.toLocaleDateString()} • {chat.messageCount} messages
-                    </p>
-                  </div>
+              <div className="group flex items-center gap-2 p-2 rounded-md cursor-pointer transition-colors bg-gray-800 text-white">
+                <MessageSquare className="h-4 w-4 flex-shrink-0" />
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm truncate">Chat #{id}</p>
+                  <p className="text-xs text-gray-400">Active now</p>
                 </div>
-              ))}
+              </div>
             </div>
           </div>
         )}
       </div>
 
-      {/* Main Content */}
-      <div className="flex-1 flex flex-col">
-        <WelcomeScreen onSendMessage={handleSendMessage} disabled={false} />
+      {/* Main Chat Area */}
+      <div className="flex-1 flex flex-col bg-gray-900">
+        {/* Chat Header */}
+        <div className="p-4 border-b border-gray-700">
+          <h1 className="text-lg font-medium text-white">Chat #{id}</h1>
+        </div>
+
+        {/* Messages Area */}
+        <div className="flex-1 overflow-y-auto p-4">
+          <div className="text-center space-y-4">
+            <h2 className="text-xl font-bold text-white">Chat Detail Page</h2>
+            <p className="text-gray-300">
+              This is where the chat messages will be displayed for chat ID: {id}
+            </p>
+          </div>
+        </div>
+
+        {/* Input Area */}
+        <div className="border-t border-gray-700 p-4">
+          <div className="flex gap-2 items-end">
+            <div className="flex-1">
+              <Textarea
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                onKeyDown={handleKeyDown}
+                placeholder="Type your message here..."
+                className="min-h-[44px] max-h-32 resize-none bg-gray-800 border-gray-600 text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
+              />
+            </div>
+            <Button
+              onClick={handleSendMessage}
+              disabled={!message.trim()}
+              size="icon"
+              className="h-10 w-10 bg-blue-600 hover:bg-blue-700 text-white"
+            >
+              <Send className="h-4 w-4" />
+            </Button>
+          </div>
+        </div>
       </div>
     </div>
   );
-}
+} 

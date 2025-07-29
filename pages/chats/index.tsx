@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { WelcomeScreen } from "../components/chat/welcome-screen";
-import { Button } from "../components/ui/button";
+import { Button } from "../../components/ui/button";
 import { Plus, MessageSquare, ChevronLeft, ChevronRight } from "lucide-react";
 
-export default function Home() {
+export default function ChatHistory() {
   const router = useRouter();
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [hoveredButton, setHoveredButton] = useState<string | null>(null);
@@ -35,13 +34,8 @@ export default function Home() {
     chats: "Xem danh sách cuộc trò chuyện"
   };
 
-  const handleSendMessage = (message: string) => {
-    console.log("Message sent from welcome:", message);
-    // TODO: Navigate to chat detail page
-  };
-
-  const handleGoToHistory = () => {
-    router.push("/chats");
+  const handleNewChat = () => {
+    router.push("/");
   };
 
   const handleSelectChat = (chatId: string) => {
@@ -90,6 +84,7 @@ export default function Home() {
         <div className="p-4 flex justify-center">
           <div className={`relative ${!isCollapsed ? "w-full" : ""}`}>
             <Button
+              onClick={handleNewChat}
               className={`bg-blue-600 hover:bg-blue-700 text-white ${
                 isCollapsed ? "w-10 h-10 rounded-full p-0" : "w-full justify-start gap-3"
               }`}
@@ -114,7 +109,6 @@ export default function Home() {
         <div className="px-4 flex justify-center">
           <div className={`relative ${!isCollapsed ? "w-full" : ""}`}>
             <Button
-              onClick={handleGoToHistory}
               variant="ghost"
               className={`text-white hover:bg-gray-800 ${
                 isCollapsed ? "w-10 h-10 rounded-full p-0" : "w-full justify-start gap-3"
@@ -163,8 +157,15 @@ export default function Home() {
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col">
-        <WelcomeScreen onSendMessage={handleSendMessage} disabled={false} />
+        <div className="flex-1 flex items-center justify-center">
+          <div className="text-center space-y-4">
+            <h1 className="text-2xl font-bold text-white">Chat History</h1>
+            <p className="text-gray-300">
+              Select a chat from the sidebar to continue the conversation
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );
-}
+} 
