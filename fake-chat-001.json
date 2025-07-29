@@ -1,0 +1,68 @@
+{
+  "id": "chat_001",
+  "title": "Đặt vé từ Hà Nội đến TP.HCM",
+  "createdAt": "2024-01-15T10:30:00Z",
+  "messageCount": 10,
+  "messages": [
+    {
+      "id": "msg_001_1",
+      "type": "user",
+      "content": "Chào bạn! Tôi muốn đặt vé máy bay từ Hà Nội đến TP.HCM",
+      "timestamp": "2024-01-15T10:30:00Z"
+    },
+    {
+      "id": "msg_001_2",
+      "type": "assistant",
+      "content": "Chào bạn! Tôi là trợ lý đặt vé máy bay Vnticket. Tôi sẽ giúp bạn đặt vé từ Hà Nội đến TP.HCM.\n\nĐể tôi có thể tìm chuyến bay phù hợp nhất, bạn có thể cho tôi biết:\n\n1. Bạn muốn bay vào ngày nào?\n2. Bạn cần mấy vé?\n3. Bạn có ưu tiên về giờ bay không (sáng, chiều, tối)?",
+      "timestamp": "2024-01-15T10:30:30Z"
+    },
+    {
+      "id": "msg_001_3",
+      "type": "user",
+      "content": "Tôi muốn bay vào ngày 20/01/2024, cần 2 vé và ưu tiên bay buổi sáng",
+      "timestamp": "2024-01-15T10:31:15Z"
+    },
+    {
+      "id": "msg_001_4",
+      "type": "assistant",
+      "content": "Cảm ơn bạn! Tôi đã ghi nhận thông tin:\n\n📅 **Ngày bay:** 20/01/2024\n👥 **Số lượng vé:** 2 vé\n🌅 **Thời gian:** Buổi sáng\n\nTôi sẽ tìm các chuyến bay từ Hà Nội (HAN) đến TP.HCM (SGN) vào buổi sáng ngày 20/01. Bạn có muốn tôi hiển thị tất cả các chuyến bay có sẵn không, hay chỉ những chuyến bay cụ thể nào đó?",
+      "timestamp": "2024-01-15T10:31:45Z"
+    },
+    {
+      "id": "msg_001_5",
+      "type": "user",
+      "content": "Bạn hãy hiển thị tất cả chuyến bay buổi sáng có sẵn cho tôi xem",
+      "timestamp": "2024-01-15T10:32:20Z"
+    },
+    {
+      "id": "msg_001_6",
+      "type": "assistant",
+      "content": "Tôi đã tìm thấy các chuyến bay buổi sáng từ Hà Nội đến TP.HCM ngày 20/01/2024:\n\n**✈️ Chuyến bay 1 - Vietnam Airlines**\n🛫 **Khởi hành:** 06:30 (Sân bay Nội Bài)\n🛬 **Đến:** 08:45 (Sân bay Tân Sơn Nhất)\n⏱️ **Thời gian bay:** 2h 15m\n🛩️ **Máy bay:** Airbus A321\n💰 **Giá vé:** 2.890.000 VNĐ/vé\n\n**✈️ Chuyến bay 2 - VietJet Air**\n🛫 **Khởi hành:** 07:15 (Sân bay Nội Bài)\n🛬 **Đến:** 09:20 (Sân bay Tân Sơn Nhất)\n⏱️ **Thời gian bay:** 2h 5m\n🛩️ **Máy bay:** Airbus A320\n💰 **Giá vé:** 2.450.000 VNĐ/vé\n\n**✈️ Chuyến bay 3 - Bamboo Airways**\n🛫 **Khởi hành:** 08:00 (Sân bay Nội Bài)\n🛬 **Đến:** 10:10 (Sân bay Tân Sơn Nhất)\n⏱️ **Thời gian bay:** 2h 10m\n🛩️ **Máy bay:** Airbus A320neo\n💰 **Giá vé:** 2.650.000 VNĐ/vé\n\nBạn muốn đặt chuyến bay nào?",
+      "timestamp": "2024-01-15T10:33:00Z"
+    },
+    {
+      "id": "msg_001_7",
+      "type": "user",
+      "content": "Tôi chọn chuyến bay Vietnam Airlines lúc 06:30",
+      "timestamp": "2024-01-15T10:33:45Z"
+    },
+    {
+      "id": "msg_001_8",
+      "type": "assistant",
+      "content": "Tuyệt vời! Bạn đã chọn:\n\n**✈️ Vietnam Airlines VN213**\n📅 **Ngày:** 20/01/2024\n🛫 **Khởi hành:** 06:30 (HAN)\n🛬 **Đến:** 08:45 (SGN)\n👥 **Số vé:** 2 vé\n💰 **Tổng tiền:** 5.780.000 VNĐ\n\nBây giờ tôi cần thông tin hành khách để hoàn tất đặt vé:\n\n1. **Họ tên đầy đủ** của 2 hành khách\n2. **Số CMND/CCCD** của từng người\n3. **Số điện thoại** liên hệ\n4. **Email** (nếu có)\n\nBạn có thể cung cấp thông tin này không?",
+      "timestamp": "2024-01-15T10:34:15Z"
+    },
+    {
+      "id": "msg_001_9",
+      "type": "user",
+      "content": "Hành khách 1: Nguyễn Văn An - 123456789 - 0901234567\nHành khách 2: Trần Thị Bình - 987654321 - 0987654321\nEmail: nguyenvanan@gmail.com",
+      "timestamp": "2024-01-15T10:35:00Z"
+    },
+    {
+      "id": "msg_001_10",
+      "type": "assistant",
+      "content": "Cảm ơn bạn! Tôi đã nhận đầy đủ thông tin. Đang xử lý đặt vé...\n\n✅ **Đặt vé thành công!**\n\n**📋 Thông tin đặt vé:**\n✈️ **Chuyến bay:** Vietnam Airlines VN213\n📅 **Ngày:** 20/01/2024\n🛫 **Khởi hành:** 06:30 (HAN)\n🛬 **Đến:** 08:45 (SGN)\n👥 **Số vé:** 2 vé\n💰 **Tổng tiền:** 5.780.000 VNĐ\n\n**👤 Hành khách:**\n1. Nguyễn Văn An - 123456789\n2. Trần Thị Bình - 987654321\n\n**📞 Liên hệ:** 0901234567\n📧 **Email:** nguyenvanan@gmail.com\n\n**🎫 Mã đặt vé:** VN213-20240120-001\n\nBạn sẽ nhận được email xác nhận và vé điện tử trong vòng 5 phút. Chúc bạn có chuyến bay thuận lợi!",
+      "timestamp": "2024-01-15T10:35:30Z"
+    }
+  ]
+} 

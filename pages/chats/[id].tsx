@@ -1,14 +1,24 @@
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { ChatInput } from "../../components/chat/chat-input";
+import { ChatMessage } from "../../components/chat/chat-message";
 import { Sidebar } from "../../components/chat/sidebar";
-import { getFakeChats, formatDate } from "../../lib/fake-data";
+import { getFakeChats, formatDate, getChatDetail, type ChatDetail } from "../../lib/fake-data";
 
 export default function ChatDetail() {
   const router = useRouter();
   const { id } = router.query;
+  const [chatDetail, setChatDetail] = useState<ChatDetail | null>(null);
   
   const allChats = getFakeChats();
   const currentChat = allChats.find(chat => chat.id === id);
+
+  useEffect(() => {
+    if (id && typeof id === 'string') {
+      const detail = getChatDetail(id);
+      setChatDetail(detail);
+    }
+  }, [id]);
 
   const handleNewChat = () => {
     router.push("/");
@@ -54,12 +64,20 @@ export default function ChatDetail() {
 
         {/* Messages Area */}
         <div className="flex-1 overflow-y-auto p-4">
-          <div className="space-y-4">
-            <h2 className="text-xl font-bold text-white">Chi tiết cuộc trò chuyện</h2>
-            <p className="text-gray-300">
-              {currentChat ? `Đây là nơi hiển thị tin nhắn cho: ${currentChat.title}` : `Chat ID: ${id}`}
-            </p>
-          </div>
+          {chatDetail ? (
+            <div className="space-y-4">
+              {chatDetail.messages.map((message) => (
+                <ChatMessage key={message.id} message={message} />
+              ))}
+            </div>
+          ) : (
+            <div className="space-y-4">
+              <h2 className="text-xl font-bold text-white">Chi tiết cuộc trò chuyện</h2>
+              <p className="text-gray-300">
+                {currentChat ? `Đây là nơi hiển thị tin nhắn cho: ${currentChat.title}` : `Chat ID: ${id}`}
+              </p>
+            </div>
+          )}
         </div>
 
         {/* Input Area */}
@@ -67,6 +85,8 @@ export default function ChatDetail() {
           <ChatInput 
             onSendMessage={handleSendMessage}
             placeholder="Nhập tin nhắn phản hồi cho Vnticket..."
+            disabled={false}
+            compact={true}
           />
         </div>
       </div>

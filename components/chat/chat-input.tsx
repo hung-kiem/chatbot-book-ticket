@@ -9,9 +9,10 @@ interface ChatInputProps {
   onSendMessage: (message: string) => void;
   disabled?: boolean;
   placeholder?: string;
+  compact?: boolean;
 }
 
-export function ChatInput({ onSendMessage, disabled = false, placeholder = "Nhập tin nhắn của bạn..." }: ChatInputProps) {
+export function ChatInput({ onSendMessage, disabled = false, placeholder = "Nhập tin nhắn của bạn...", compact = false }: ChatInputProps) {
   const [message, setMessage] = useState("");
 
   const handleSend = () => {
@@ -30,9 +31,9 @@ export function ChatInput({ onSendMessage, disabled = false, placeholder = "Nh�
 
   return (
     <div className="w-full">
-      <div className="bg-gray-800 rounded-xl p-6">
+      <div className={`bg-gray-800 rounded-xl ${compact ? 'p-3' : 'p-6'}`}>
         {/* Placeholder Text */}
-        <div className="text-gray-300 text-lg mb-4">
+        <div className={`text-gray-300 ${compact ? 'text-base mb-1' : 'text-lg mb-4'}`}>
           {placeholder}
         </div>
         
@@ -42,12 +43,12 @@ export function ChatInput({ onSendMessage, disabled = false, placeholder = "Nh�
           onChange={(e) => setMessage(e.target.value)}
           onKeyDown={handleKeyDown}
           placeholder=""
-          className="min-h-[44px] max-h-48 resize-none bg-transparent border-none text-white text-lg placeholder-transparent focus:outline-none focus:ring-0"
+          className={`${compact ? 'min-h-[28px] py-1' : 'min-h-[44px]'} max-h-48 resize-none bg-transparent border-none text-white text-base md:text-lg placeholder-transparent focus:outline-none focus:ring-0`}
           disabled={disabled}
         />
 
         {/* Controls */}
-        <div className="flex items-center justify-end pt-4 border-t border-gray-700">
+        <div className={`flex items-center justify-end border-t border-gray-700 ${compact ? 'pt-2' : 'pt-4'}`}>
           {/* Right Controls */}
           <div className="flex items-center gap-3">
             {/* Send Button */}

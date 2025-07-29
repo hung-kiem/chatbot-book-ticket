@@ -33,4 +33,32 @@ export function formatDate(dateString: string): string {
     const diffInDays = Math.floor(diffInHours / 24);
     return `${diffInDays} ngày trước`;
   }
+}
+
+export interface ChatMessage {
+  id: string;
+  type: 'user' | 'assistant';
+  content: string;
+  timestamp: string;
+}
+
+export interface ChatDetail {
+  id: string;
+  title: string;
+  createdAt: string;
+  messageCount: number;
+  messages: ChatMessage[];
+}
+
+export function getChatDetail(chatId: string): ChatDetail | null {
+  try {
+    if (chatId === 'chat_001') {
+      const chatData = require('../fake-chat-001.json');
+      return chatData as ChatDetail;
+    }
+    return null;
+  } catch (error) {
+    console.error('Error loading chat detail:', error);
+    return null;
+  }
 } 
