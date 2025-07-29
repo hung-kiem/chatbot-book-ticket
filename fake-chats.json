@@ -1,0 +1,62 @@
+[
+  {
+    "id": "chat_001",
+    "title": "Đặt vé từ Hà Nội đến TP.HCM",
+    "createdAt": "2024-01-15T10:30:00Z",
+    "messageCount": 8
+  },
+  {
+    "id": "chat_002",
+    "title": "Hỏi về chính sách đổi vé máy bay",
+    "createdAt": "2024-01-14T15:45:00Z",
+    "messageCount": 12
+  },
+  {
+    "id": "chat_003",
+    "title": "Tìm chuyến bay giá rẻ từ Đà Nẵng",
+    "createdAt": "2024-01-13T09:20:00Z",
+    "messageCount": 6
+  },
+  {
+    "id": "chat_004",
+    "title": "Đặt vé khứ hồi Hà Nội - Đà Lạt",
+    "createdAt": "2024-01-12T14:15:00Z",
+    "messageCount": 15
+  },
+  {
+    "id": "chat_005",
+    "title": "Hướng dẫn check-in online",
+    "createdAt": "2024-01-11T11:30:00Z",
+    "messageCount": 9
+  },
+  {
+    "id": "chat_006",
+    "title": "Tìm chuyến bay quốc tế đi Singapore",
+    "createdAt": "2024-01-10T16:45:00Z",
+    "messageCount": 11
+  },
+  {
+    "id": "chat_007",
+    "title": "Đặt vé cho gia đình 4 người",
+    "createdAt": "2024-01-09T08:20:00Z",
+    "messageCount": 18
+  },
+  {
+    "id": "chat_008",
+    "title": "Hỏi về hành lý xách tay",
+    "createdAt": "2024-01-08T13:10:00Z",
+    "messageCount": 7
+  },
+  {
+    "id": "chat_009",
+    "title": "Tìm chuyến bay sáng sớm",
+    "createdAt": "2024-01-07T07:30:00Z",
+    "messageCount": 5
+  },
+  {
+    "id": "chat_010",
+    "title": "Đặt vé business class",
+    "createdAt": "2024-01-06T20:15:00Z",
+    "messageCount": 14
+  }
+] 

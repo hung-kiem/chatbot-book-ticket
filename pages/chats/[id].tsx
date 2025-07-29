@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { Button } from "../../components/ui/button";
 import { Plus, MessageSquare, Send, ChevronLeft, ChevronRight } from "lucide-react";
 import { Textarea } from "../../components/ui/textarea";
+import { getFakeChats, formatDate } from "../../lib/fake-data";
 
 export default function ChatDetail() {
   const router = useRouter();
@@ -10,6 +11,9 @@ export default function ChatDetail() {
   const [message, setMessage] = useState("");
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [hoveredButton, setHoveredButton] = useState<string | null>(null);
+  
+  const allChats = getFakeChats();
+  const currentChat = allChats.find(chat => chat.id === id);
 
   const tooltips = {
     toggle: isCollapsed ? "Mở rộng sidebar" : "Thu nhỏ sidebar",
@@ -133,13 +137,23 @@ export default function ChatDetail() {
           <div className="flex-1 overflow-y-auto p-4">
             <div className="space-y-1">
               <h3 className="text-sm font-medium text-gray-400 mb-3">Recents</h3>
-              <div className="group flex items-center gap-2 p-2 rounded-md cursor-pointer transition-colors bg-gray-800 text-white">
-                <MessageSquare className="h-4 w-4 flex-shrink-0" />
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm truncate">Chat #{id}</p>
-                  <p className="text-xs text-gray-400">Active now</p>
+              {allChats.slice(0, 5).map((chat) => (
+                <div
+                  key={chat.id}
+                  className={`group flex items-center gap-2 p-2 rounded-md cursor-pointer transition-colors ${
+                    chat.id === id ? "bg-gray-800 text-white" : "hover:bg-gray-800 text-gray-300"
+                  }`}
+                  onClick={() => router.push(`/chats/${chat.id}`)}
+                >
+                  <MessageSquare className="h-4 w-4 flex-shrink-0" />
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm truncate">{chat.title}</p>
+                    <p className="text-xs text-gray-500">
+                      {formatDate(chat.createdAt)} • {chat.messageCount} tin nhắn
+                    </p>
+                  </div>
                 </div>
-              </div>
+              ))}
             </div>
           </div>
         )}
@@ -149,15 +163,22 @@ export default function ChatDetail() {
       <div className="flex-1 flex flex-col bg-gray-900">
         {/* Chat Header */}
         <div className="p-4 border-b border-gray-700">
-          <h1 className="text-lg font-medium text-white">Chat #{id}</h1>
+          <h1 className="text-lg font-medium text-white">
+            {currentChat ? currentChat.title : `Chat ${id}`}
+          </h1>
+          {currentChat && (
+            <p className="text-sm text-gray-400 mt-1">
+              {formatDate(currentChat.createdAt)} • {currentChat.messageCount} tin nhắn
+            </p>
+          )}
         </div>
 
         {/* Messages Area */}
         <div className="flex-1 overflow-y-auto p-4">
           <div className="text-center space-y-4">
-            <h2 className="text-xl font-bold text-white">Chat Detail Page</h2>
+            <h2 className="text-xl font-bold text-white">Chi tiết cuộc trò chuyện</h2>
             <p className="text-gray-300">
-              This is where the chat messages will be displayed for chat ID: {id}
+              {currentChat ? `Đây là nơi hiển thị tin nhắn cho: ${currentChat.title}` : `Chat ID: ${id}`}
             </p>
           </div>
         </div>

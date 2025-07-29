@@ -3,31 +3,13 @@ import { useRouter } from "next/router";
 import { WelcomeScreen } from "../components/chat/welcome-screen";
 import { Button } from "../components/ui/button";
 import { Plus, MessageSquare, ChevronLeft, ChevronRight } from "lucide-react";
+import { getFakeChats, formatDate } from "../lib/fake-data";
 
 export default function Home() {
   const router = useRouter();
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [hoveredButton, setHoveredButton] = useState<string | null>(null);
-  const [chatHistory] = useState([
-    {
-      id: "1",
-      title: "Đặt vé từ Hà Nội đến TP.HCM",
-      timestamp: new Date("2024-01-15"),
-      messageCount: 5
-    },
-    {
-      id: "2", 
-      title: "Hỏi về chính sách đổi vé",
-      timestamp: new Date("2024-01-14"),
-      messageCount: 3
-    },
-    {
-      id: "3",
-      title: "Tìm chuyến bay giá rẻ",
-      timestamp: new Date("2024-01-13"),
-      messageCount: 8
-    }
-  ]);
+  const allChats = getFakeChats();
 
   const tooltips = {
     toggle: isCollapsed ? "Mở rộng sidebar" : "Thu nhỏ sidebar",
@@ -141,7 +123,7 @@ export default function Home() {
           <div className="flex-1 overflow-y-auto p-4">
             <div className="space-y-1">
               <h3 className="text-sm font-medium text-gray-400 mb-3">Recents</h3>
-              {chatHistory.map((chat) => (
+              {allChats.slice(0, 5).map((chat) => (
                 <div
                   key={chat.id}
                   className="group flex items-center gap-2 p-2 rounded-md cursor-pointer transition-colors hover:bg-gray-800 text-gray-300"
@@ -151,7 +133,7 @@ export default function Home() {
                   <div className="flex-1 min-w-0">
                     <p className="text-sm truncate">{chat.title}</p>
                     <p className="text-xs text-gray-500">
-                      {chat.timestamp.toLocaleDateString()} • {chat.messageCount} messages
+                      {formatDate(chat.createdAt)} • {chat.messageCount} tin nhắn
                     </p>
                   </div>
                 </div>
