@@ -18,13 +18,13 @@ export function ChatMessage({ message }: ChatMessageProps) {
 
   return (
     <div
-      className={`flex gap-3 p-4 ${isUser ? "bg-background" : "bg-muted/50"}`}
+      className={`flex gap-3 p-4 ${isUser ? "bg-gray-900" : "bg-gray-800/50"}`}
     >
       <div
         className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center ${
           isUser
-            ? "bg-primary text-primary-foreground"
-            : "bg-secondary text-secondary-foreground"
+            ? "bg-blue-600 text-white"
+            : "bg-gray-700 text-gray-300"
         }`}
       >
         {isUser ? <User className="h-4 w-4" /> : <Bot className="h-4 w-4" />}
@@ -32,16 +32,16 @@ export function ChatMessage({ message }: ChatMessageProps) {
 
       <div className="flex-1 space-y-2">
         <div className="flex items-center gap-2">
-          <span className="font-medium text-sm">
+          <span className="font-medium text-sm text-white">
             {isUser ? "You" : "Assistant"}
           </span>
-          <span className="text-xs text-muted-foreground">
+          <span className="text-xs text-gray-400">
             {message.timestamp.toLocaleTimeString()}
           </span>
         </div>
 
         <div className="prose prose-sm max-w-none">
-          <p className="whitespace-pre-wrap">{message.content}</p>
+          <p className="whitespace-pre-wrap text-gray-200">{message.content}</p>
         </div>
       </div>
     </div>

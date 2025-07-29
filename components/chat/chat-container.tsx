@@ -117,7 +117,7 @@ export function ChatContainer() {
   };
 
   return (
-    <div className="flex h-screen bg-background">
+    <div className="flex h-screen bg-gray-900">
       {/* Sidebar */}
       <Sidebar
         chatHistory={chatHistory}
@@ -128,7 +128,7 @@ export function ChatContainer() {
       />
 
       {/* Main Chat Area */}
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col bg-gray-900">
         {/* Messages */}
         <div className="flex-1 overflow-y-auto">
           {currentChat ? (
@@ -137,12 +137,12 @@ export function ChatContainer() {
                 <ChatMessage key={message.id} message={message} />
               ))}
               {isLoading && (
-                <div className="flex gap-3 p-4 bg-muted/50">
-                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-secondary text-secondary-foreground flex items-center justify-center">
+                <div className="flex gap-3 p-4 bg-gray-800/50">
+                  <div className="flex-shrink-0 w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center">
                     <div className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
                   </div>
                   <div className="flex-1">
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-sm text-gray-300">
                       Assistant is typing...
                     </p>
                   </div>
@@ -152,8 +152,8 @@ export function ChatContainer() {
           ) : (
             <div className="flex items-center justify-center h-full">
               <div className="text-center space-y-4">
-                <h1 className="text-2xl font-bold">Welcome to ChatBot</h1>
-                <p className="text-muted-foreground">
+                <h1 className="text-2xl font-bold text-white">Welcome to ChatBot</h1>
+                <p className="text-gray-300">
                   Start a new conversation to begin chatting
                 </p>
               </div>

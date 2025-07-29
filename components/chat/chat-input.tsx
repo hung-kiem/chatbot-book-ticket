@@ -37,7 +37,7 @@ export function ChatInput({ onSendMessage, disabled = false }: ChatInputProps) {
   }, [message]);
 
   return (
-    <div className="border-t border-border p-4 bg-background">
+    <div className="border-t border-gray-700 p-4 bg-gray-900">
       <div className="flex gap-2 items-end">
         <div className="flex-1">
           <Textarea
@@ -46,7 +46,7 @@ export function ChatInput({ onSendMessage, disabled = false }: ChatInputProps) {
             onChange={(e) => setMessage(e.target.value)}
             onKeyDown={handleKeyDown}
             placeholder="Type your message here..."
-            className="min-h-[44px] max-h-32 resize-none"
+            className="min-h-[44px] max-h-32 resize-none bg-gray-800 border-gray-600 text-white placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
             disabled={disabled}
           />
         </div>
@@ -54,7 +54,7 @@ export function ChatInput({ onSendMessage, disabled = false }: ChatInputProps) {
           onClick={handleSend}
           disabled={!message.trim() || disabled}
           size="icon"
-          className="h-10 w-10"
+          className="h-10 w-10 bg-blue-600 hover:bg-blue-700 text-white"
         >
           <Send className="h-4 w-4" />
         </Button>
